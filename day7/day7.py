@@ -1,3 +1,9 @@
+# one liners
+with open("input") as f: print(sum(target for target, nums in [(int(line.split(":")[0]), [int(x) for x in line.split(":")[1].split(" ") if len(x) > 0]) for line in f.readlines()] if any((lambda target,num,nums,ops: target == [(num:=op(num, right)) for op, right in zip(ops, nums[1:])][-1])(target, nums[0], nums.copy(), list(op)) for op in list(__import__("itertools").product([lambda x,y: x+y, lambda x,y: x*y], repeat=len(nums) - 1)))))
+with open("input") as f: print(sum(target for target, nums in [(int(line.split(":")[0]), [int(x) for x in line.split(":")[1].split(" ") if len(x) > 0]) for line in f.readlines()] if any((lambda target,num,nums,ops: target == [(num:=op(num, right)) for op, right in zip(ops, nums[1:])][-1])(target, nums[0], nums.copy(), list(op)) for op in list(__import__("itertools").product([lambda x,y: x+y, lambda x,y: x*y, lambda x,y: int(f"{x}{y}")], repeat=len(nums) - 1)))))
+
+# actual solution
+
 from itertools import product
 from typing import Callable
 
